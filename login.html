@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -201,4 +202,209 @@
         });
     </script>
 </body>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | ResuCraftify</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f5f6;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #ebbae8 0%, #4a6cf7 100%);
+        }
+        
+        .login-container {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+        
+        .input-field {
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .input-field:focus {
+            border-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.2);
+        }
+        
+        .social-btn {
+            transition: all 0.3s ease;
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #94a3b8;
+        }
+        
+        .divider::before, .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .divider::before {
+            margin-right: 1rem;
+        }
+        
+        .divider::after {
+            margin-left: 1rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+    <div class="login-container bg-white rounded-xl w-full max-w-md overflow-hidden">
+        <!-- Header -->
+        <div class="gradient-bg py-6 px-8 text-center">
+            <div class="flex items-center justify-center mb-4">
+                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-blue-600 font-bold text-xl mr-3">
+                    RC
+                </div>
+                <span class="text-2xl font-bold text-white">Resu<span class="text-blue-100">Craftify</span></span>
+            </div>
+            <h1 class="text-2xl font-bold text-white">Welcome Back</h1>
+            <p class="text-blue-100 mt-1">Sign in to continue to your account</p>
+        </div>
+        
+        <!-- Login Form -->
+        <div class="px-8 py-8">
+            <!-- Social Login Buttons -->
+            <div class="flex space-x-4 mb-6">
+                <button class="social-btn flex-1 flex items-center justify-center py-2 px-4 border border-gray-200 rounded-lg hover:bg-gray-50">
+                    <i class="fab fa-google text-red-500 mr-2"></i>
+                    <span class="text-sm font-medium text-gray-700">Google</span>
+                </button>
+                <button class="social-btn flex-1 flex items-center justify-center py-2 px-4 border border-gray-200 rounded-lg hover:bg-gray-50">
+                    <i class="fab fa-facebook-f text-blue-600 mr-2"></i>
+                    <span class="text-sm font-medium text-gray-700">Facebook</span>
+                </button>
+            </div>
+            
+            <!-- Divider -->
+            <div class="divider text-sm my-6">OR</div>
+            
+            <!-- Email/Password Form -->
+            <form onsubmit="handleLogin(event)">
+                <div class="mb-4">
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-envelope text-gray-400"></i>
+                        </div>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            class="input-field w-full pl-10 pr-3 py-3 rounded-lg focus:outline-none" 
+                            placeholder="you@example.com"
+                            required
+                        >
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-lock text-gray-400"></i>
+                        </div>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            class="input-field w-full pl-10 pr-3 py-3 rounded-lg focus:outline-none" 
+                            placeholder="••••••••"
+                            required
+                        >
+                        <button type="button" class="absolute right-3 top-3 text-gray-400 hover:text-gray-600">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="flex items-center justify-between mb-6">
+                    <div class="flex items-center">
+                        <input 
+                            type="checkbox" 
+                            id="remember" 
+                            class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                        >
+                        <label for="remember" class="ml-2 block text-sm text-gray-700">Stay signed in</label>
+                    </div>
+                    <a href="#" class="text-sm text-blue-600 hover:text-blue-500 font-medium">Forgot password?</a>
+                </div>
+                
+                <button 
+                    type="submit" 
+                    class="gradient-bg w-full py-3 px-4 rounded-lg text-white font-medium hover:opacity-90 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                >
+                    Sign In
+                </button>
+            </form>
+
+            
+            
+            <div class="mt-6 text-center">
+                <p class="text-sm text-gray-600">
+                    Don't have an account? 
+                    <a href="register.html" class="text-blue-600 hover:text-blue-500 font-medium">Sign up</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    
+        // Handle login form submission
+        function handleLogin(event) {
+                    event.preventDefault();
+                    
+                    const email = document.getElementById('email').value;
+                    const password = document.getElementById('password').value;
+
+                    // Mock user data for validation
+                    const mockUser = {
+                        email: "user@example.com",
+                        password: "password123"
+                    };
+
+                    if (email === mockUser.email && password === mockUser.password) {
+                        // Redirect to home.html if credentials match
+                        window.location.href = "home.html";
+                    } else {
+                        alert("Invalid email or password. Please try again.");
+                    }
+                }
+               
+        // Toggle password visibility
+        document.querySelector('button[aria-label="toggle password visibility"]').addEventListener('click', function() {
+            const passwordInput = document.getElementById('password');
+            const icon = this.querySelector('i');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            }
+        });
+    </script>
+</body>
+>>>>>>> 23f3bb43c9ddbf88f233bd6e00afe59eadf47165
 </html>

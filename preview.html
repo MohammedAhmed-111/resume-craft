@@ -311,3 +311,318 @@
     </script>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Preview</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;500;700&display=swap');
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .resume-header {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .resume-paper {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-overlay {
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        /* New style for PDF generation */
+        .pdf-text {
+            color: #000000 !important; /* Force black text for PDF */
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Header -->
+    <header class="bg-white shadow-sm py-4 px-6 flex justify-between items-center">
+        <div class="flex items-center">
+            <div class="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xl">R</div>
+            <span class="ml-3 font-semibold text-gray-800">ResumeBuilder</span>
+        </div>
+        <nav>
+            <ul class="flex space-x-6">
+                <li><a href="#" class="text-gray-600 hover:text-purple-600">Dashboard</a></li>
+                <li><a href="#" class="text-gray-600 hover:text-purple-600">Templates</a></li>
+                <li><a href="#" class="text-gray-600 hover:text-purple-600">Help</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Congrats Message -->
+        <div class="bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl p-6 mb-8 border border-purple-100">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">🎉 Congratulations!</h2>
+                    <p class="text-gray-600">Your resume is looking great! Ready to download or share it with the world?</p>
+                </div>
+                <div class="flex space-x-3 mt-4 md:mt-0">
+                    <button id="downloadBtn" class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-lg font-medium flex items-center">
+                        <i class="fas fa-download mr-2"></i> Download PDF
+                    </button>
+                    <button id="shareBtn" class="bg-white hover:bg-gray-50 text-purple-600 px-6 py-2 rounded-lg font-medium border border-purple-200 flex items-center">
+                        <i class="fas fa-share-alt mr-2"></i> Share
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resume Container -->
+        <div class="resume-paper bg-white rounded-lg p-8 mb-6 fade-in" id="resumePreview">
+            <!-- Header Section -->
+            <div class="resume-header border-b-2 border-indigo-100 pb-6 mb-6">
+                <h1 id="name" class="text-4xl font-bold text-gray-800 mb-1"></h1>
+                <h2 id="job-title" class="text-2xl text-indigo-600 font-medium mb-4"></h2>
+                
+                <div class="flex flex-wrap gap-x-8 gap-y-2 text-gray-700">
+                    <div class="flex items-center">
+                        <i class="fas fa-envelope text-indigo-500 mr-2"></i>
+                        <span id="email"></span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-phone text-indigo-500 mr-2"></i>
+                        <span id="phone"></span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fab fa-linkedin text-indigo-500 mr-2"></i>
+                        <span id="linkedin"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Summary Section -->
+            <div class="mb-6">
+                <h3 class="section-title text-xl font-bold text-gray-800 mb-3 flex items-center">
+                    <span class="bg-indigo-600 w-5 h-1 mr-2"></span>
+                    Professional Summary
+                </h3>
+                <p id="summary" class="text-gray-700 leading-relaxed"></p>
+            </div>
+            
+            <!-- Skills Section -->
+            <div class="mb-6">
+                <h3 class="section-title text-xl font-bold text-gray-800 mb-3 flex items-center">
+                    <span class="bg-indigo-600 w-5 h-1 mr-2"></span>
+                    Skills
+                </h3>
+                <div id="skills" class="flex flex-wrap gap-2"></div>
+            </div>
+            
+            <!-- Education Section -->
+            <div>
+                <h3 class="section-title text-xl font-bold text-gray-800 mb-3 flex items-center">
+                    <span class="bg-indigo-600 w-5 h-1 mr-2"></span>
+                    Education
+                </h3>
+                <div id="education" class="space-y-4"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Share Modal -->
+    <div id="shareModal" class="fixed inset-0 flex items-center justify-center modal-overlay hidden">
+        <div class="bg-white rounded-xl p-6 max-w-md w-full mx-4">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-gray-800">Share Your Resume</h3>
+                <button id="closeModal" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <p class="text-gray-600 mb-6">Share your resume with potential employers or colleagues.</p>
+            <div class="flex justify-center space-x-4 mb-6">
+                <a href="#" class="social-icon bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-icon bg-blue-400 text-white w-12 h-12 rounded-full flex items-center justify-center">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="social-icon bg-green-500 text-white w-12 h-12 rounded-full flex items-center justify-center">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="#" class="social-icon bg-red-500 text-white w-12 h-12 rounded-full flex items-center justify-center">
+                    <i class="fab fa-reddit-alien"></i>
+                </a>
+                <a href="#" class="social-icon bg-blue-700 text-white w-12 h-12 rounded-full flex items-center justify-center">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-1">Shareable Link</label>
+                <div class="flex">
+                    <input type="text" id="shareLink" class="flex-1 px-4 py-2 border border-gray-300 rounded-l-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent" value="https://resumebuilder.com/share/abc123" readonly>
+                    <button id="copyLink" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-r-lg">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get resume data from localStorage
+            const resumeData = JSON.parse(localStorage.getItem('resumeData'));
+            
+            if (!resumeData) {
+                alert('No resume data found. Please create a resume first.');
+                window.location.href = 'builder.html';
+                return;
+            }
+
+            // Populate basic info
+            document.getElementById('name').textContent = resumeData.basicInfo.fullName;
+            document.getElementById('email').textContent = resumeData.basicInfo.email;
+            document.getElementById('phone').textContent = resumeData.basicInfo.phone;
+            document.getElementById('linkedin').textContent = resumeData.basicInfo.linkedin;
+            
+            // Set a default job title if none exists
+            const jobTitle = resumeData.workExperience.length > 0 
+                ? resumeData.workExperience[0].jobTitle 
+                : 'Your Profession';
+            document.getElementById('job-title').textContent = jobTitle;
+
+            // Populate summary
+            document.getElementById('summary').textContent = resumeData.summary || 'Professional summary not provided.';
+
+            // Populate skills
+            const skillsContainer = document.getElementById('skills');
+            
+            // Combine all skill types
+            const allSkills = [
+                ...(resumeData.skills.technical || []),
+                ...(resumeData.skills.soft || []),
+                ...(resumeData.skills.languages || [])
+            ];
+            
+            if (allSkills.length > 0) {
+                allSkills.forEach(skill => {
+                    const skillTag = document.createElement('span');
+                    skillTag.className = 'bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm';
+                    skillTag.textContent = skill;
+                    skillsContainer.appendChild(skillTag);
+                });
+            } else {
+                skillsContainer.innerHTML = '<p class="text-gray-500">No skills listed</p>';
+            }
+
+            // Populate education
+            const educationContainer = document.getElementById('education');
+            
+            if (resumeData.education.length > 0) {
+                resumeData.education.forEach(edu => {
+                    const eduDiv = document.createElement('div');
+                    eduDiv.innerHTML = `
+                        <div class="flex flex-col sm:flex-row sm:justify-between mb-1">
+                            <h4 class="font-bold text-gray-800">${edu.degree || 'Degree not specified'}</h4>
+                            <div class="text-indigo-600">
+                                ${edu.startDate || ''} ${edu.startDate && edu.endDate ? '-' : ''} ${edu.endDate || ''}
+                            </div>
+                        </div>
+                        <div class="text-gray-600">${edu.institution || 'Institution not specified'}</div>
+                        ${edu.description ? `<p class="text-gray-600 mt-1">${edu.description}</p>` : ''}
+                    `;
+                    educationContainer.appendChild(eduDiv);
+                });
+            } else {
+                educationContainer.innerHTML = '<p class="text-gray-500">No education information provided</p>';
+            }
+
+            // Add pdf-text class to all text elements before PDF generation
+            document.getElementById('downloadBtn').addEventListener('click', function() {
+                // Add the pdf-text class to all text elements
+                const textElements = document.querySelectorAll('#resumePreview *');
+                textElements.forEach(el => {
+                    el.classList.add('pdf-text');
+                });
+
+                const { jsPDF } = window.jspdf;
+                const element = document.getElementById('resumePreview');
+                const options = {
+                    scale: 2, // Higher scale for better quality
+                    logging: false,
+                    useCORS: true,
+                    allowTaint: true,
+                    backgroundColor: '#FFFFFF' // Force white background
+                };
+
+                html2canvas(element, options).then(canvas => {
+                    const imgData = canvas.toDataURL('image/png');
+                    const pdf = new jsPDF({
+                        orientation: 'portrait',
+                        unit: 'pt',
+                        format: [595, 842] // A4 size
+                    });
+
+                    const imgProps = pdf.getImageProperties(imgData);
+                    const pdfWidth = pdf.internal.pageSize.getWidth();
+                    const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+                    pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+                    pdf.save('resume.pdf');
+
+                    // Remove the pdf-text class after generation
+                    textElements.forEach(el => {
+                        el.classList.remove('pdf-text');
+                    });
+                });
+            });
+
+            // Share modal functionality
+            document.getElementById('shareBtn').addEventListener('click', function () {
+                document.getElementById('shareModal').classList.remove('hidden');
+            });
+
+            document.getElementById('closeModal').addEventListener('click', function () {
+                document.getElementById('shareModal').classList.add('hidden');
+            });
+
+            document.getElementById('copyLink').addEventListener('click', function () {
+                const shareLink = document.getElementById('shareLink');
+                shareLink.select();
+                document.execCommand('copy');
+
+                const copyBtn = document.getElementById('copyLink');
+                copyBtn.innerHTML = '<i class="fas fa-check mr-1"></i> Copied!';
+
+                setTimeout(() => {
+                    copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>
+>>>>>>> 23f3bb43c9ddbf88f233bd6e00afe59eadf47165

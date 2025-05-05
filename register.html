@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -216,4 +217,224 @@
         });
     </script>
 </body>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - ResumeBuilder</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #31a1fc;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg,#ebbae8 0%, #4a6cf7 100%);
+        }
+        .input-field {
+            border: 1px solid #d1d5db;
+            transition: all 0.3s;
+        }
+        .input-field:focus {
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+        }
+        .social-btn {
+            transition: all 0.3s ease;
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #94a3b8;
+        }
+        
+        .divider::before, .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .divider::before {
+            margin-right: 1rem;
+        }
+        
+        .divider::after {
+            margin-left: 1rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 bg-gray-50">
+    <div class="login-container bg-white rounded-xl shadow-lg w-full max-w-md overflow-hidden">
+        <!-- Header -->
+        <div class="gradient-bg py-6 px-8 text-center">
+            <div class="flex items-center justify-center mb-4">
+                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-blue-600 font-bold text-xl mr-3">
+                    RC
+                </div>
+                <span class="text-2xl font-bold text-white">Resu<span class="text-blue-200">Craftify</span></span>
+            </div>
+            <h1 class="text-2xl font-bold text-white">Create Account</h1>
+            <p class="text-blue-200 mt-1">Get started with your resume</p>
+        </div>
+        
+        <!-- Registration Form -->
+        <div class="px-8 py-8">
+            <form id="registerForm">
+                <div class="mb-4">
+                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-user text-gray-400"></i>
+                        </div>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            class="input-field w-full pl-10 pr-3 py-2 rounded-lg focus:outline-none" 
+                            placeholder="John Doe"
+                            required
+                        >
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="reg-email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-envelope text-gray-400"></i>
+                        </div>
+                        <input 
+                            type="email" 
+                            id="reg-email" 
+                            class="input-field w-full pl-10 pr-3 py-2 rounded-lg focus:outline-none" 
+                            placeholder="you@example.com"
+                            required
+                        >
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="reg-password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-lock text-gray-400"></i>
+                        </div>
+                        <input 
+                            type="password" 
+                            id="reg-password" 
+                            class="input-field w-full pl-10 pr-3 py-2 rounded-lg focus:outline-none" 
+                            placeholder="••••••••"
+                            required
+                            minlength="6"
+                        >
+                        <button type="button" class="absolute right-3 top-2 text-gray-400 hover:text-gray-600" onclick="togglePassword('reg-password')">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <label for="confirm-password" class="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-lock text-gray-400"></i>
+                        </div>
+                        <input 
+                            type="password" 
+                            id="confirm-password" 
+                            class="input-field w-full pl-10 pr-3 py-2 rounded-lg focus:outline-none" 
+                            placeholder="••••••••"
+                            required
+                        >
+                        <button type="button" class="absolute right-3 top-2 text-gray-400 hover:text-gray-600" onclick="togglePassword('confirm-password')">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <button 
+                    type="submit" 
+                    class="gradient-bg w-full py-2 px-4 rounded-lg text-white font-medium hover:opacity-90 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                    Create Account
+                </button>
+            </form>
+            
+            <div class="mt-6 text-center">
+                <p class="text-sm text-gray-600">
+                    Already have an account? 
+                    <a href="index.html" class="text-blue-600 hover:text-blue-500 font-medium">Sign in</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle password visibility
+        function togglePassword(id) {
+            const passwordInput = document.getElementById(id);
+            const icon = event.currentTarget.querySelector('i');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        }
+
+        // Handle registration form submission
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('reg-email').value;
+            const password = document.getElementById('reg-password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            
+            // Validate password match
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return;
+            }
+            
+            // Get existing users
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            
+            // Check if email already exists
+            if (users.some(user => user.email === email)) {
+                alert('Email already registered');
+                return;
+            }
+            
+            // Create new user
+            const newUser = {
+                name,
+                email,
+                password,
+                createdAt: new Date().toISOString()
+            };
+            
+            // Save user
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+            
+            // Store current user in session
+            sessionStorage.setItem('currentUser', JSON.stringify(newUser));
+            
+            // Redirect to home page
+            window.location.href = 'home.html';
+        });
+    </script>
+</body>
+>>>>>>> 23f3bb43c9ddbf88f233bd6e00afe59eadf47165
 </html>

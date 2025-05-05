@@ -297,3 +297,304 @@
     </script>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meet the Team | ResuCraftify</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .header-font {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg,  #ebbae8 0%, #4a6cf7 100%);
+        }
+        
+        .team-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .social-icon {
+            transition: all 0.2s ease;
+        }
+        
+        .social-icon:hover {
+            transform: scale(1.2);
+        }
+        
+        .expertise-tag {
+            transition: all 0.2s ease;
+        }
+        
+        .expertise-tag:hover {
+            transform: translateY(-2px);
+        }
+        
+        .team-photo {
+            transition: all 0.3s ease;
+        }
+        
+        .team-card:hover .team-photo {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <header class="sticky top-0 z-50 bg-white shadow-sm">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center text-white font-bold text-xl mr-3">
+                        RC
+                    </div>
+                    <span class="text-2xl font-bold text-gray-800">Resu<span class="text-blue-600">Craftify</span></span>
+                </div>
+                <br/>
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html" class="text-gray-600 hover:text-blue-600">Home</a>
+                <a href="about.html" class="text-gray-600 hover:text-blue-600">About</a>
+                <a href="documents.html" class="text-gray-600 hover:text-blue-600">Documents</a>
+                <a href="team.html" class="text-blue-600 font-medium">Team</a>
+                <a href="blog.html" class="text-gray-600 hover:text-blue-600">Blog</a>
+                
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="md:hidden text-gray-600">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <div class="gradient-bg text-white">
+        <div class="container mx-auto px-4 py-16 md:py-24">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="header-font text-4xl md:text-5xl font-bold mb-4">Meet the ResuCraftify Team</h1>
+                <p class="text-xl mb-8 opacity-90">The passionate people behind the platform that's transforming how professionals craft their careers</p>
+            </div>
+        </div>
+    </div>
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-12">
+        <!-- Our Story -->
+        <div class="max-w-4xl mx-auto text-center mb-16">
+            <h2 class="header-font text-3xl font-bold mb-6">Our Story</h2>
+            <p class="text-gray-600 text-lg mb-6">
+                ResuCraftify began as a passion project between four friends who saw how difficult it was for professionals to create resumes that truly showcased their potential. What started as a simple tool has grown into a comprehensive platform combining AI technology with human expertise.
+            </p>
+            <p class="text-gray-600 text-lg">
+                Today, our diverse team of developers, designers, and career experts work together to create innovative solutions that help people take control of their career narratives.
+            </p>
+        </div>
+        
+        <!-- Developers Section -->
+        <div id="developers" class="mb-20">
+            <h2 class="header-font text-3xl font-bold mb-8 text-center">Development Team</h2>
+            
+            <!-- Professor - Centered at top -->
+            <div class="flex justify-center mb-12">
+                <div class="team-card bg-white rounded-xl overflow-hidden w-full max-w-md">
+                    <div class="relative h-64 avatar">
+                        <img src="https://www.hightechconcrete.com/wp-content/uploads/2021/01/no-profile.jpg" alt="Profile Picture" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex flex-wrap gap-2 mb-4 justify-center">
+                            <span class="expertise-tag bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium">Mentor</span>
+                            <span class="expertise-tag bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium">Guide</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-center mb-1">Prof. M. Supriya</h3>
+                        <p class="text-blue-600 text-center mb-4">Project Guide</p>
+                        <p class="text-gray-600 mb-4 text-center">Our project guide who provided valuable insights and direction throughout the development of ResuCraftify.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Members in 2x2 grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Row 1 -->
+                <!-- Team Member 1 -->
+                <div class="team-card bg-white rounded-xl overflow-hidden">
+                    <div class="relative h-64 avatar">
+                        <img src="https://www.hightechconcrete.com/wp-content/uploads/2021/01/no-profile.jpg" alt="Profile Picture" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-1">Mohammed Ahmed</h3>
+                        <p class="text-blue-600 mb-4">Team Member</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="expertise-tag bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium">Frontend</span>
+                            <span class="expertise-tag bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium">UI/UX</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Contributed to the frontend development and user interface design of ResuCraftify.</p>
+                    </div>
+                </div>
+                
+                <!-- Team Member 2 -->
+                <div class="team-card bg-white rounded-xl overflow-hidden">
+                    <div class="relative h-64 avatar">
+                        <img src="https://www.hightechconcrete.com/wp-content/uploads/2021/01/no-profile.jpg" alt="Profile Picture" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-1">Mosam Shrijani</h3>
+                        <p class="text-blue-600 mb-4">Team Member</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="expertise-tag bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium">Backend</span>
+                            <span class="expertise-tag bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium">Database</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Worked on backend development and database management for ResuCraftify.</p>
+                    </div>
+                </div>
+                
+                <!-- Row 2 -->
+                <!-- Team Member 3 -->
+                <div class="team-card bg-white rounded-xl overflow-hidden">
+                    <div class="relative h-64 avatar">
+                        <img src="https://www.hightechconcrete.com/wp-content/uploads/2021/01/no-profile.jpg" alt="Profile Picture" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-1">Mulege Kalyani</h3>
+                        <p class="text-blue-600 mb-4">Team Member</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="expertise-tag bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium">Content</span>
+                            <span class="expertise-tag bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium">Testing</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Contributed to content creation and quality assurance testing for ResuCraftify.</p>
+                    </div>
+                </div>
+                
+                <!-- Team Member 4 -->
+                <div class="team-card bg-white rounded-xl overflow-hidden">
+                    <div class="relative h-64 avatar">
+                        <img src="https://www.hightechconcrete.com/wp-content/uploads/2021/01/no-profile.jpg" alt="Profile Picture" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-1">D. Shiva Sai</h3>
+                        <p class="text-blue-600 mb-4">Team Member</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="expertise-tag bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium">Documentation</span>
+                            <span class="expertise-tag bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium">Research</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Responsible for project documentation and research aspects of ResuCraftify.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Column 1 -->
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center text-white font-bold text-xl mr-3">
+                            RC
+                        </div>
+                        <span class="text-xl font-bold">Resu<span class="text-blue-400">Craftify</span></span>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        A simple resume builder for your job application needs to help you land your dream job.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Column 2 -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Navigation</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Build Your Resume</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Resume Tips</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Example Resumes</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 3 -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Help</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">How it Works</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact Support</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Feedback</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 4 -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Terms of Use</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">
+                    © 2025 ResuCraftify. All rights reserved.
+                </p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Simple script for mobile menu toggle (would be expanded in a real implementation)
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.querySelector('.md\\:hidden');
+            // In a real implementation, this would toggle a mobile menu
+            mobileMenuButton.addEventListener('click', function() {
+                alert('Mobile menu would open here in a full implementation');
+            });
+            
+            // Add hover effects to team cards
+            const teamCards = document.querySelectorAll('.team-card');
+            teamCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.querySelector('.team-photo').style.transform = 'scale(1.05)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.querySelector('.team-photo').style.transform = 'scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+>>>>>>> 23f3bb43c9ddbf88f233bd6e00afe59eadf47165

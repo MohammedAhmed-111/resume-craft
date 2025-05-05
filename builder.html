@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResuCraftify - Build Your Perfect Resume</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .progress-bar {
+            transition: width 0.5s ease-in-out;
+        }
+        
+        .section-card {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+        }
+        
+        .section-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .input-highlight {
+            transition: all 0.3s ease;
+        }
+        
+        .input-highlight:focus {
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Header Section -->
+        <header class="text-center mb-10 fade-in">
+            <h1 class="text-4xl font-bold text-indigo-700 mb-3">Start Building Your Resume</h1>
+            <p class="text-lg text-gray-600">Let's craft a resume that highlights your unique skills and experiences!</p>
+            <div class="mt-6">
+                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                    <div id="progress-bar" class="progress-bar bg-indigo-600 h-2.5 rounded-full" style="width: 16%"></div>
+                </div>
+                <p id="progress-text" class="text-sm text-gray-500 mt-2">Step 1 of 6 - Basic Information</p>
+            </div>
+        </header>
+
+        <!-- Form Container -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden p-6 mb-8">
+            <!-- Multi-step form -->
+            <form id="resume-form">
+                <!-- Step 1: Basic Information -->
+                <div id="step-1" class="form-step active fade-in">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-indigo-100 w-10 h-10 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-indigo-700 font-bold">1</span>
+                        </div>
+                        <h2 class="text-2xl font-semibold text-gray-800">Basic Information</h2>
+                    </div>
+                    
+                    <div class="space-y-5">
+                        <div class="section-card bg-gray-50 p-5 rounded-lg">
+                            <label for="full-name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                            <input type="text" id="full-name" class="input-highlight w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="e.g. John Doe">
+                            <p class="mt-1 text-xs text-gray-500">This will be the headline of your resume</p>
+                        </div>
+                        
+                        <div class="section-card bg-gray-50 p-5 rounded-lg">
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                            <input type="email" id="email" class="input-highlight w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="e.g. john.doe@example.com">
+                        </div>
+                        
+                        <div class="section-card bg-gray-50 p-5 rounded-lg">
+                            <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                            <input type="tel" id="phone" class="input-highlight w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="e.g. (123) 456-7890">
+                        </div>
+                        
+                        <div class="section-card bg-gray-50 p-5 rounded-lg">
+                            <label for="linkedin" class="block text-sm font-medium text-gray-700 mb-1">LinkedIn Profile (Optional)</label>
+                            <input type="url" id="linkedin" class="input-highlight w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="e.g. linkedin.com/in/johndoe">
+                        </div>
+                        
+                        <div class="section-card bg-gray-50 p-5 rounded-lg">
+                            <label for="portfolio" class="block text-sm font-medium text-gray-700 mb-1">Portfolio Website (Optional)</label>
+                            <input type="url" id="portfolio" class="input-highlight w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="e.g. johndoe.dev">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Work Experience -->
+                <div id="step-2" class="form-step hidden">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-indigo-100 w-10 h-10 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-indigo-700 font-bold">2</span>
+                        </div>
+                        <h2 class="text-2xl font-semibold text-gray-800">Work Experience</h2>
+                    </div>
+                    
+                    <div id="experience-container">
+                        <div class="experience-section section-card bg-gray-50 p-5 rounded-lg mb-5">
+                            <div class="flex justify-between items-center mb-3">
+                                <h3 class="font-medium text-gray-800">Experience #1</h3>
+                                <button type="button" class="text-red-500 hover:text-red-700 text-sm" onclick="removeExperience(this)">
+                                    <i class="fas fa-trash-alt mr-1"></i> Remove
+                                </button>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <label for="job-title" class="block text-sm font-medium text-gray-700 mb-1">Job Title</label>
+                                    <input type="text" name="job-title[]" class="input-highlight w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="e.g. Software Engineer">
+                                </div>
+                                
+                                <div>
+                                    <label for="company" class="block text-sm font-medium text-gray-700 mb-1">Company Name</label>
+                                    <input type="text" name="company[]" class="input-highlight w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="e.g. Tech Solutions Inc.">
+                                </div>
+                                
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="start-date" class="block text-sm font-medium text-gray-700 mb-1">Start Date</label>
+                                        <input type="month" name="start-date[]" class="input-highlight w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200">
+                                    </div>
+                                    <div>
+                                        <label for="end-date" class="block text-sm font-medium text-gray-700 mb-1">End Date</label>
+                                        <input type="month" name="end-date[]" class="input-highlight w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200">
+                                        <div class="flex items-center mt-2">
+                                            <input type="checkbox" name="current-job[]" id="current-job" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                                            <label for="current-job" class="ml-2 block text-sm text-gray-700">I currently work here</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <label for="job-description" class="block text-sm font-medium text-gray-700 mb-1">Job Description</label>
+                                    <textarea name="job-description[]" rows="3" class="input-highlight w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="Describe your responsibilities and achievements..."></textarea>
+                                    <p class="mt-1 text-xs text-gray-500">Use bullet points for better readability (e.g., • Developed new features...)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button type="button" onclick="addExperience()" class="mt-3 flex items-center text-indigo-600 hover:text-indigo-800">
+                        <i class="fas fa-plus-circle mr-2"></i> Add Another Experience
+                    </button>
+                </div>
+
+                <!-- Step 3: Education -->
+                <div id="step-3" class="form-step hidden">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-indigo-100 w-10 h-10 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-indigo-700 font-bold">3</span>
+                        </div>
+                        <h2 class="text-2xl font-semibold text-gray-800">Education</h2>
+                    </div>
+                    
+                    <div id="education-container">
+                        <div class="education-section section-card bg-gray-50 p-5 rounded-lg mb-5">
+                            <div class="flex justify-between items-center mb-3">
+                                <h3 class="font-medium text-gray-800">Education #1</h3>
+                                <button type="button" class="text-red-500 hover:text-red-700 text-sm" onclick="removeEducation(this)">
+                                    <i class="fas fa-trash-alt mr-1"></i> Remove
+                                </button>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <label for="degree" class="block text-sm font-medium text-gray-700 mb-1">Degree/Certificate</label>
+                                    <input type="text" name="degree[]" class="input-highlight w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="e.g. Bachelor of Science in Computer Science">
+                                </div>
+                                
+                                <div>
+                                    <label for="institution" class="block text-sm font-medium text-gray-700 mb-1">Institution</label>
+                                    <input type="text" name="institution[]" class="input-highlight w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="e.g. University of Technology">
+                                </div>
+                                
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="education-start-date" class="block text-sm font-medium text-gray-700 mb-1">Start Date</label>
+                                        <input type="month" name="education-start-date[]" class="input-highlight w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200">
+                                    </div>
+                                    <div>
+                                        <label for="education-end-date" class="block text-sm font-medium text-gray-700 mb-1">End Date (or Expected)</label>
+                                        <input type="month" name="education-end-date[]" class="input-highlight w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200">
+                                        <div class="flex items-center mt-2">
+                                            <input type="checkbox" name="current-education[]" id="current-education" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                                            <label for="current-education" class="ml-2 block text-sm text-gray-700">Currently studying here</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <label for="education-description" class="block text-sm font-medium text-gray-700 mb-1">Description (Optional)</label>
+                                    <textarea name="education-description[]" rows="2" class="input-highlight w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="Relevant coursework, honors, or achievements..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button type="button" onclick="addEducation()" class="mt-3 flex items-center text-indigo-600 hover:text-indigo-800">
+                        <i class="fas fa-plus-circle mr-2"></i> Add Another Education Entry
+                    </button>
+                </div>
+
+                <!-- Step 4: Skills -->
+                <div id="step-4" class="form-step hidden">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-indigo-100 w-10 h-10 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-indigo-700 font-bold">4</span>
+                        </div>
+                        <h2 class="text-2xl font-semibold text-gray-800">Skills</h2>
+                    </div>
+                    
+                    <div class="section-card bg-gray-50 p-5 rounded-lg mb-5">
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Technical Skills</label>
+                            <div id="technical-skills-container" class="flex flex-wrap gap-2 mb-3">
+                                <!-- Skills will be added here -->
+                            </div>
+                            <div class="flex">
+                                <input type="text" id="technical-skill-input" class="input-highlight flex-1 px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="e.g. JavaScript, Python, Photoshop">
+                                <button type="button" onclick="addSkill('technical')" class="bg-indigo-600 text-white px-4 py-2 rounded-r-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                            <p class="mt-1 text-xs text-gray-500">Add your technical skills one by one</p>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Soft Skills</label>
+                            <div id="soft-skills-container" class="flex flex-wrap gap-2 mb-3">
+                                <!-- Skills will be added here -->
+                            </div>
+                            <div class="flex">
+                                <input type="text" id="soft-skill-input" class="input-highlight flex-1 px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="e.g. Communication, Leadership, Teamwork">
+                                <button type="button" onclick="addSkill('soft')" class="bg-indigo-600 text-white px-4 py-2 rounded-r-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Languages</label>
+                            <div id="language-skills-container" class="flex flex-wrap gap-2 mb-3">
+                                <!-- Languages will be added here -->
+                            </div>
+                            <div class="flex">
+                                <input type="text" id="language-skill-input" class="input-highlight flex-1 px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="e.g. English (Fluent), Spanish (Intermediate)">
+                                <button type="button" onclick="addSkill('language')" class="bg-indigo-600 text-white px-4 py-2 rounded-r-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                            <p class="mt-1 text-xs text-gray-500">Include proficiency level in parentheses</p>
+                        </div>
+                    </div>
+                    
+                    <div class="section-card bg-gray-50 p-5 rounded-lg">
+                        <label for="certifications" class="block text-sm font-medium text-gray-700 mb-2">Certifications (Optional)</label>
+                        <textarea id="certifications" rows="3" class="input-highlight w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="List any relevant certifications you've earned..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Step 5: Summary -->
+                <div id="step-5" class="form-step hidden">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-indigo-100 w-10 h-10 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-indigo-700 font-bold">5</span>
+                        </div>
+                        <h2 class="text-2xl font-semibold text-gray-800">Professional Summary</h2>
+                    </div>
+                    
+                    <div class="section-card bg-gray-50 p-5 rounded-lg mb-5">
+                        <label for="summary" class="block text-sm font-medium text-gray-700 mb-2">About You</label>
+                        <textarea id="summary" rows="5" class="input-highlight w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="Write a brief summary of your professional background, skills, and career goals. Keep it concise (3-5 sentences)."></textarea>
+                        <p class="mt-2 text-sm text-gray-600">Example: "Results-driven software engineer with 5+ years of experience in full-stack development. Specialized in JavaScript frameworks and cloud technologies. Passionate about creating efficient, scalable solutions that improve user experience. Strong collaborator with excellent problem-solving skills."</p>
+                    </div>
+                    
+                    <div class="section-card bg-gray-50 p-5 rounded-lg">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Career Objective (Optional)</label>
+                        <textarea id="objective" rows="3" class="input-highlight w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="If you're early in your career, you might include a career objective..."></textarea>
+                        <p class="mt-1 text-xs text-gray-500">Tip: Focus on what you can offer employers rather than what you want from them.</p>
+                    </div>
+                </div>
+
+                <!-- Step 6: Additional Details -->
+                <div id="step-6" class="form-step hidden">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-indigo-100 w-10 h-10 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-indigo-700 font-bold">6</span>
+                        </div>
+                        <h2 class="text-2xl font-semibold text-gray-800">Additional Details</h2>
+                    </div>
+                    
+                    <div class="space-y-5">
+                        <div class="section-card bg-gray-50 p-5 rounded-lg">
+                            <label for="projects" class="block text-sm font-medium text-gray-700 mb-2">Projects (Optional)</label>
+                            <textarea id="projects" rows="4" class="input-highlight w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="Describe any significant projects you've worked on..."></textarea>
+                            <p class="mt-1 text-xs text-gray-500">Include project name, your role, technologies used, and outcomes if possible.</p>
+                        </div>
+                        
+                        <div class="section-card bg-gray-50 p-5 rounded-lg">
+                            <label for="volunteer" class="block text-sm font-medium text-gray-700 mb-2">Volunteer Work (Optional)</label>
+                            <textarea id="volunteer" rows="3" class="input-highlight w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="List any relevant volunteer experience..."></textarea>
+                        </div>
+                        
+                        <div class="section-card bg-gray-50 p-5 rounded-lg">
+                            <label for="hobbies" class="block text-sm font-medium text-gray-700 mb-2">Hobbies & Interests (Optional)</label>
+                            <textarea id="hobbies" rows="2" class="input-highlight w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="List hobbies that might be relevant to your profession..."></textarea>
+                            <p class="mt-1 text-xs text-gray-500">Example for developer: "Open-source contributor, tech blogging, hackathon participant"</p>
+                        </div>
+                        
+                        <div class="section-card bg-gray-50 p-5 rounded-lg">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Resume Template</label>
+                            <div class="grid grid-cols-3 gap-4">
+                                <div>
+                                    <input type="radio" id="template-1" name="template" value="classic" class="hidden peer" checked>
+                                    <label for="template-1" class="inline-flex items-center justify-between p-2 w-full text-gray-500 bg-white rounded-lg border border-gray-200 cursor-pointer peer-checked:border-indigo-600 peer-checked:text-indigo-600 hover:text-gray-600 hover:bg-gray-50">
+                                        <div class="block">
+                                            <div class="w-full text-sm font-semibold">Classic</div>
+                                            <div class="w-full text-xs">Clean & Professional</div>
+                                        </div>
+                                        <i class="fas fa-file-alt ml-2"></i>
+                                    </label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="template-2" name="template" value="modern" class="hidden peer">
+                                    <label for="template-2" class="inline-flex items-center justify-between p-2 w-full text-gray-500 bg-white rounded-lg border border-gray-200 cursor-pointer peer-checked:border-indigo-600 peer-checked:text-indigo-600 hover:text-gray-600 hover:bg-gray-50">
+                                        <div class="block">
+                                            <div class="w-full text-sm font-semibold">Modern</div>
+                                            <div class="w-full text-xs">Creative & Bold</div>
+                                        </div>
+                                        <i class="fas fa-file-code ml-2"></i>
+                                    </label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="template-3" name="template" value="minimal" class="hidden peer">
+                                    <label for="template-3" class="inline-flex items-center justify-between p-2 w-full text-gray-500 bg-white rounded-lg border border-gray-200 cursor-pointer peer-checked:border-indigo-600 peer-checked:text-indigo-600 hover:text-gray-600 hover:bg-gray-50">
+                                        <div class="block">
+                                            <div class="w-full text-sm font-semibold">Minimal</div>
+                                            <div class="w-full text-xs">Simple & Elegant</div>
+                                        </div>
+                                        <i class="fas fa-file ml-2"></i>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="flex justify-between mt-8">
+            <button id="prev-btn" class="hidden px-6 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400">
+                <i class="fas fa-arrow-left mr-2"></i> Previous
+            </button>
+            <button id="next-btn" class="ml-auto px-6 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                Next <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+            <button id="submit-btn" class="hidden ml-auto px-6 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">
+                <i class="fas fa-check-circle mr-2"></i> Generate Resume
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Current step tracking
+        let currentStep = 1;
+        const totalSteps = 6;
+        
+        // DOM elements
+        const nextBtn = document.getElementById('next-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        const submitBtn = document.getElementById('submit-btn');
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+        
+        // Initialize the form
+        document.addEventListener('DOMContentLoaded', function() {
+            updateProgress();
+            
+            // Next button click handler
+            nextBtn.addEventListener('click', function() {
+                if (validateStep(currentStep)) {
+                    navigateToStep(currentStep + 1);
+                }
+            });
+            
+            // Previous button click handler
+            prevBtn.addEventListener('click', function() {
+                navigateToStep(currentStep - 1);
+            });
+            
+            // Submit button click handler
+            submitBtn.addEventListener('click', function() {
+                if (validateStep(currentStep)) {
+                    alert('Resume generated successfully! This would typically redirect to a preview page.');
+                    // Here you would typically submit the form via AJAX or redirect to a preview page
+                }
+            });
+        });
+        
+        // Fixed form submission and data saving
+        document.getElementById('submit-btn').addEventListener('click', function() {
+            if (validateStep(currentStep)) {
+                // Collect all form data
+                const resumeData = {
+                    basicInfo: {
+                        fullName: document.getElementById('full-name').value,
+                        email: document.getElementById('email').value,
+                        phone: document.getElementById('phone').value,
+                        linkedin: document.getElementById('linkedin').value,
+                        portfolio: document.getElementById('portfolio').value
+                    },
+                    workExperience: [],
+                    education: [],
+                    skills: {
+                        technical: [],
+                        soft: [],
+                        languages: []
+                    },
+                    summary: document.getElementById('summary').value,
+                    objective: document.getElementById('objective').value,
+                    projects: document.getElementById('projects').value,
+                    volunteer: document.getElementById('volunteer').value,
+                    hobbies: document.getElementById('hobbies').value,
+                    template: document.querySelector('input[name="template"]:checked').value
+                };
+
+                // Collect work experience
+                document.querySelectorAll('.experience-section').forEach((exp, index) => {
+                    resumeData.workExperience.push({
+                        jobTitle: exp.querySelector('[name="job-title[]"]').value,
+                        company: exp.querySelector('[name="company[]"]').value,
+                        startDate: exp.querySelector('[name="start-date[]"]').value,
+                        endDate: exp.querySelector('[name="end-date[]"]').value,
+                        currentJob: exp.querySelector('[name="current-job[]"]').checked,
+                        description: exp.querySelector('[name="job-description[]"]').value
+                    });
+                });
+
+                // Collect education
+                document.querySelectorAll('.education-section').forEach((edu, index) => {
+                    resumeData.education.push({
+                        degree: edu.querySelector('[name="degree[]"]').value,
+                        institution: edu.querySelector('[name="institution[]"]').value,
+                        startDate: edu.querySelector('[name="education-start-date[]"]').value,
+                        endDate: edu.querySelector('[name="education-end-date[]"]').value,
+                        currentEducation: edu.querySelector('[name="current-education[]"]').checked,
+                        description: edu.querySelector('[name="education-description[]"]').value
+                    });
+                });
+
+                // Collect skills
+                document.querySelectorAll('[name="technical-skills[]"]').forEach(skill => {
+                    resumeData.skills.technical.push(skill.value);
+                });
+                
+                document.querySelectorAll('[name="soft-skills[]"]').forEach(skill => {
+                    resumeData.skills.soft.push(skill.value);
+                });
+                
+                document.querySelectorAll('[name="language-skills[]"]').forEach(skill => {
+                    resumeData.skills.languages.push(skill.value);
+                });
+
+                // Save to localStorage
+                localStorage.setItem('resumeData', JSON.stringify(resumeData));
+                
+                // Redirect to preview page
+                window.location.href = 'preview.html';
+            }
+        });
+
+        // Navigate between steps
+        function navigateToStep(step) {
+            // Hide current step
+            document.getElementById(`step-${currentStep}`).classList.remove('active');
+            document.getElementById(`step-${currentStep}`).classList.add('hidden');
+            
+            // Show new step
+            document.getElementById(`step-${step}`).classList.remove('hidden');
+            document.getElementById(`step-${step}`).classList.add('active', 'fade-in');
+            
+            // Update current step
+            currentStep = step;
+            updateProgress();
+            
+            // Update button visibility
+            if (currentStep === 1) {
+                prevBtn.classList.add('hidden');
+            } else {
+                prevBtn.classList.remove('hidden');
+            }
+            
+            if (currentStep === totalSteps) {
+                nextBtn.classList.add('hidden');
+                submitBtn.classList.remove('hidden');
+            } else {
+                nextBtn.classList.remove('hidden');
+                submitBtn.classList.add('hidden');
+            }
+        }
+        
+        // Update progress bar and text
+        function updateProgress() {
+            const progressPercentage = (currentStep / totalSteps) * 100;
+            progressBar.style.width = `${progressPercentage}%`;
+            
+            let stepText = '';
+            switch(currentStep) {
+                case 1:
+                    stepText = 'Basic Information';
+                    break;
+                case 2:
+                    stepText = 'Work Experience';
+                    break;
+                case 3:
+                    stepText = 'Education';
+                    break;
+                case 4:
+                    stepText = 'Skills';
+                    break;
+                case 5:
+                    stepText = 'Professional Summary';
+                    break;
+                case 6:
+                    stepText = 'Additional Details';
+                    break;
+            }
+            
+            progressText.textContent = `Step ${currentStep} of ${totalSteps} - ${stepText}`;
+        }
+        
+        // Validate current step before proceeding
+        function validateStep(step) {
+            let isValid = true;
+            
+            switch(step) {
+                case 1:
+                    const fullName = document.getElementById('full-name').value.trim();
+                    const email = document.getElementById('email').value.trim();
+                    
+                    if (!fullName) {
+                        alert('Please enter your full name');
+                        isValid = false;
+                    } else if (!email) {
+                        alert('Please enter your email address');
+                        isValid = false;
+                    } else if (!validateEmail(email)) {
+                        alert('Please enter a valid email address');
+                        isValid = false;
+                    }
+                    break;
+                    
+                case 2:
+                    const jobTitles = document.getElementsByName('job-title[]');
+                    if (jobTitles.length > 0 && !jobTitles[0].value.trim()) {
+                        alert('Please enter at least one work experience');
+                        isValid = false;
+                    }
+                    break;
+                    
+                case 3:
+                    const degrees = document.getElementsByName('degree[]');
+                    if (degrees.length > 0 && !degrees[0].value.trim()) {
+                        alert('Please enter at least one education entry');
+                        isValid = false;
+                    }
+                    break;
+                    
+                case 5:
+                    const summary = document.getElementById('summary').value.trim();
+                    if (!summary) {
+                        alert('Please write a professional summary');
+                        isValid = false;
+                    }
+                    break;
+            }
+            
+            return isValid;
+        }
+        
+        // Email validation helper
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+        
+        // Experience section management
+        function addExperience() {
+            const container = document.getElementById('experience-container');
+            const count = container.getElementsByClassName('experience-section').length + 1;
+            
+            const newExperience = document.createElement('div');
+            newExperience.className = 'experience-section section-card bg-gray-50 p-5 rounded-lg mb-5 fade-in';
+            newExperience.innerHTML = `
+                <div class="flex justify-between items-center mb-3">
+                    <h3 class="font-medium text-gray-800">Experience #${count}</h3>
+                    <button type="button" class="text-red-500 hover:text-red-700 text-sm" onclick="removeExperience(this)">
+                        <i class="fas fa-trash-alt mr-1"></i> Remove
+                    </button>
+                </div>
+                
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Job Title</label>
+                        <input type="text" name="job-title[]" class="input-highlight w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="e.g. Software Engineer">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Company Name</label>
+                        <input type="text" name="company[]" class="input-highlight w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="e.g. Tech Solutions Inc.">
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Start Date</label>
+                            <input type="month" name="start-date[]" class="input-highlight w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">End Date</label>
+                            <input type="month" name="end-date[]" class="input-highlight w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200">
+                            <div class="flex items-center mt-2">
+                                <input type="checkbox" name="current-job[]" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                                <label class="ml-2 block text-sm text-gray-700">I currently work here</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Job Description</label>
+                        <textarea name="job-description[]" rows="3" class="input-highlight w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="Describe your responsibilities and achievements..."></textarea>
+                    </div>
+                </div>
+            `;
+            
+            container.appendChild(newExperience);
+            scrollToBottom();
+        }
+        
+        function removeExperience(button) {
+            const section = button.closest('.experience-section');
+            if (document.getElementsByClassName('experience-section').length > 1) {
+                section.classList.add('hidden');
+                setTimeout(() => section.remove(), 300);
+            } else {
+                alert('You need to have at least one experience entry');
+            }
+        }
+        
+        // Education section management
+        function addEducation() {
+            const container = document.getElementById('education-container');
+            const count = container.getElementsByClassName('education-section').length + 1;
+            
+            const newEducation = document.createElement('div');
+            newEducation.className = 'education-section section-card bg-gray-50 p-5 rounded-lg mb-5 fade-in';
+            newEducation.innerHTML = `
+                <div class="flex justify-between items-center mb-3">
+                    <h3 class="font-medium text-gray-800">Education #${count}</h3>
+                    <button type="button" class="text-red-500 hover:text-red-700 text-sm" onclick="removeEducation(this)">
+                        <i class="fas fa-trash-alt mr-1"></i> Remove
+                    </button>
+                </div>
+                
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Degree/Certificate</label>
+                        <input type="text" name="degree[]" class="input-highlight w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="e.g. Bachelor of Science in Computer Science">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Institution</label>
+                        <input type="text" name="institution[]" class="input-highlight w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="e.g. University of Technology">
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Start Date</label>
+                            <input type="month" name="education-start-date[]" class="input-highlight w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">End Date (or Expected)</label>
+                            <input type="month" name="education-end-date[]" class="input-highlight w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200">
+                            <div class="flex items-center mt-2">
+                                <input type="checkbox" name="current-education[]" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                                <label class="ml-2 block text-sm text-gray-700">Currently studying here</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Description (Optional)</label>
+                        <textarea name="education-description[]" rows="2" class="input-highlight w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="Relevant coursework, honors, or achievements..."></textarea>
+                    </div>
+                </div>
+            `;
+            
+            container.appendChild(newEducation);
+            scrollToBottom();
+        }
+        
+        function removeEducation(button) {
+            const section = button.closest('.education-section');
+            if (document.getElementsByClassName('education-section').length > 1) {
+                section.classList.add('hidden');
+                setTimeout(() => section.remove(), 300);
+            } else {
+                alert('You need to have at least one education entry');
+            }
+        }
+        
+        // Skills management
+        function addSkill(type) {
+            const inputId = `${type}-skill-input`;
+            const containerId = `${type}-skills-container`;
+            
+            const input = document.getElementById(inputId);
+            const skill = input.value.trim();
+            
+            if (skill) {
+                const container = document.getElementById(containerId);
+                const skillElement = document.createElement('div');
+                skillElement.className = 'skill-tag bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm flex items-center fade-in';
+                skillElement.innerHTML = `
+                    ${skill}
+                    <button type="button" onclick="removeSkill(this)" class="ml-2 text-indigo-500 hover:text-indigo-700">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <input type="hidden" name="${type}-skills[]" value="${skill}">
+                `;
+                
+                container.appendChild(skillElement);
+                input.value = '';
+            }
+        }
+        
+        function removeSkill(button) {
+            const skillTag = button.closest('.skill-tag');
+            skillTag.classList.add('hidden');
+            setTimeout(() => skillTag.remove(), 300);
+        }
+        
+        // Helper function to scroll to bottom when adding new sections
+        function scrollToBottom() {
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth'
+            });
+        }
+
+        // Redirect to preview page on form submission
+        submitBtn.addEventListener('click', function () {
+            if (validateStep(currentStep)) {
+                window.location.href = 'preview.html';
+            }
+        });
+
+        document.getElementById('submitBtn').addEventListener('click', function () {
+            const name = document.getElementById('full-name').value; // Ensure the ID matches
+            const jobTitle = document.getElementById('jobTitleInput').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const linkedin = document.getElementById('linkedin').value;
+            const summary = document.getElementById('summary').value;
+            const skills = document.getElementById('skillsInput').value.split(','); // Assuming comma-separated skills
+            const education = [
+                {
+                    degree: document.getElementById('degreeInput').value,
+                    institution: document.getElementById('institutionInput').value,
+                    year: document.getElementById('yearInput').value
+                }
+            ];
+
+            // Save to localStorage
+            localStorage.setItem('name', name);
+            localStorage.setItem('jobTitle', jobTitle);
+            localStorage.setItem('email', email);
+            localStorage.setItem('phone', phone);
+            localStorage.setItem('linkedin', linkedin);
+            localStorage.setItem('summary', summary);
+            localStorage.setItem('skills', JSON.stringify(skills));
+            localStorage.setItem('education', JSON.stringify(education));
+
+            // Redirect to preview.html
+            window.location.href = 'preview.html';
+        });
+
+        // Add name input field
+        const nameInputField = document.createElement('input');
+        nameInputField.type = 'text';
+        nameInputField.id = 'nameInput';
+        nameInputField.placeholder = 'Enter your name';
+        document.body.appendChild(nameInputField);
+
+        const name = document.getElementById('nameInput').value;
+        const userName = "John Doe";
+    </script>
+</body>
+</html>

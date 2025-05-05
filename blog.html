@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Tips | ResuCraftify</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .blog-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #ebbae8 0%, #4a6cf7 100%);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg,  #ebbae8 0%, #4a6cf7 100%  );
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .image-hover {
+            transition: transform 0.3s ease;
+        }
+        
+        .blog-card:hover .image-hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl mr-3">
+                        RC
+                    </div>
+                    <span class="text-2xl font-bold text-gray-800">Resu<span class="text-blue-600">Craftify</span></span>
+                </div>
+                
+                <!-- Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600">Home</a>
+                    <a href="about.html" class="text-gray-700 hover:text-blue-600">About</a>
+                    <a href="documents.html" class="text-gray-700 hover:text-blue-600">Documents</a>
+                    <a href="team.html" class="text-gray-700 hover:text-blue-600">Team</a>
+                    <a href="blog.html" class="text-blue-600 font-medium">Blog</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Hero Section -->
+        <section class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Career Insights & Resume Tips</h1>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">Simple, practical advice to help you build better resumes and advance your career</p>
+        </section>
+        
+        <!-- Featured Article -->
+        <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-8 mb-12 flex flex-col md:flex-row items-center gap-8">
+            <div class="md:w-1/2 overflow-hidden rounded-lg">
+                <img src="https://images.unsplash.com/photo-1521791055366-0d553872125f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                     alt="Resume Writing" 
+                     class="w-full h-auto image-hover">
+            </div>
+            <div class="md:w-1/2">
+                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium mb-4 inline-block">Featured</span>
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">How to Write a Resume That Gets Noticed</h2>
+                <p class="text-gray-600 mb-6">Learn the key elements that make your resume stand out to recruiters and hiring managers in any industry.</p>
+                <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg inline-flex items-center">
+                    Read Article <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Articles Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Article 1 -->
+            <article class="blog-card bg-white rounded-lg overflow-hidden fade-in">
+                <div class="overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                         alt="ATS Resume" 
+                         class="w-full h-48 object-cover image-hover">
+                </div>
+                <div class="p-6">
+                    <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs font-medium">Resume Tips</span>
+                    <h3 class="text-xl font-bold text-gray-800 mt-3 mb-2">Understanding ATS Systems</h3>
+                    <p class="text-gray-600 mb-4">How to format your resume to pass through Applicant Tracking Systems used by most companies.</p>
+                    <a href="#" class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center">
+                        Read More <i class="fas fa-chevron-right ml-1 text-sm"></i>
+                    </a>
+                </div>
+            </article>
+            
+            <!-- Article 2 -->
+            <article class="blog-card bg-white rounded-lg overflow-hidden fade-in">
+                <div class="overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                         alt="Interview Tips" 
+                         class="w-full h-48 object-cover image-hover">
+                </div>
+                <div class="p-6">
+                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">Interviewing</span>
+                    <h3 class="text-xl font-bold text-gray-800 mt-3 mb-2">Common Interview Questions</h3>
+                    <p class="text-gray-600 mb-4">Prepare for your next interview with these essential questions and winning answers.</p>
+                    <a href="#" class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center">
+                        Read More <i class="fas fa-chevron-right ml-1 text-sm"></i>
+                    </a>
+                </div>
+            </article>
+            
+            <!-- Article 3 -->
+            <article class="blog-card bg-white rounded-lg overflow-hidden fade-in">
+                <div class="overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                         alt="Career Growth" 
+                         class="w-full h-48 object-cover image-hover">
+                </div>
+                <div class="p-6">
+                    <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium">Career Growth</span>
+                    <h3 class="text-xl font-bold text-gray-800 mt-3 mb-2">Skills for Future Jobs</h3>
+                    <p class="text-gray-600 mb-4">Discover the most in-demand skills that will future-proof your career in any industry.</p>
+                    <a href="#" class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center">
+                        Read More <i class="fas fa-chevron-right ml-1 text-sm"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Article 4 -->
+            <article class="blog-card bg-white rounded-lg overflow-hidden fade-in">
+                <div class="overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                         alt="Cover Letter" 
+                         class="w-full h-48 object-cover image-hover">
+                </div>
+                <div class="p-6">
+                    <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-medium">Application</span>
+                    <h3 class="text-xl font-bold text-gray-800 mt-3 mb-2">Writing a Great Cover Letter</h3>
+                    <p class="text-gray-600 mb-4">Learn how to craft a compelling cover letter that complements your resume.</p>
+                    <a href="#" class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center">
+                        Read More <i class="fas fa-chevron-right ml-1 text-sm"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Article 5 -->
+            <article class="blog-card bg-white rounded-lg overflow-hidden fade-in">
+                <div class="overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                         alt="Networking" 
+                         class="w-full h-48 object-cover image-hover">
+                </div>
+                <div class="p-6">
+                    <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full text-xs font-medium">Networking</span>
+                    <h3 class="text-xl font-bold text-gray-800 mt-3 mb-2">Effective Networking Strategies</h3>
+                    <p class="text-gray-600 mb-4">Build professional relationships that can lead to new career opportunities.</p>
+                    <a href="#" class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center">
+                        Read More <i class="fas fa-chevron-right ml-1 text-sm"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Article 6 -->
+            <article class="blog-card bg-white rounded-lg overflow-hidden fade-in">
+                <div class="overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                         alt="LinkedIn Profile" 
+                         class="w-full h-48 object-cover image-hover">
+                </div>
+                <div class="p-6">
+                    <span class="bg-teal-100 text-teal-800 px-2 py-1 rounded-full text-xs font-medium">Online Presence</span>
+                    <h3 class="text-xl font-bold text-gray-800 mt-3 mb-2">Optimizing Your LinkedIn Profile</h3>
+                    <p class="text-gray-600 mb-4">Make your LinkedIn profile stand out to recruiters and hiring managers.</p>
+                    <a href="#" class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center">
+                        Read More <i class="fas fa-chevron-right ml-1 text-sm"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Article 7 -->
+            <article class="blog-card bg-white rounded-lg overflow-hidden fade-in">
+                <div class="overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                         alt="Salary Negotiation" 
+                         class="w-full h-48 object-cover image-hover">
+                </div>
+                <div class="p-6">
+                    <span class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs font-medium">Career Advice</span>
+                    <h3 class="text-xl font-bold text-gray-800 mt-3 mb-2">Salary Negotiation Tips</h3>
+                    <p class="text-gray-600 mb-4">Get the compensation you deserve with these proven negotiation strategies.</p>
+                    <a href="#" class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center">
+                        Read More <i class="fas fa-chevron-right ml-1 text-sm"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Article 8 -->
+            <article class="blog-card bg-white rounded-lg overflow-hidden fade-in">
+                <div class="overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                         alt="Remote Work" 
+                         class="w-full h-48 object-cover image-hover">
+                </div>
+                <div class="p-6">
+                    <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs font-medium">Work Trends</span>
+                    <h3 class="text-xl font-bold text-gray-800 mt-3 mb-2">Thriving in Remote Work</h3>
+                    <p class="text-gray-600 mb-4">Essential tips for being productive and successful in remote positions.</p>
+                    <a href="#" class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center">
+                        Read More <i class="fas fa-chevron-right ml-1 text-sm"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Article 9 -->
+            <article class="blog-card bg-white rounded-lg overflow-hidden fade-in">
+                <div class="overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1543269664-76bc3997d9ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                         alt="Career Change" 
+                         class="w-full h-48 object-cover image-hover">
+                </div>
+                <div class="p-6">
+                    <span class="bg-pink-100 text-pink-800 px-2 py-1 rounded-full text-xs font-medium">Career Change</span>
+                    <h3 class="text-xl font-bold text-gray-800 mt-3 mb-2">Switching Careers Successfully</h3>
+                    <p class="text-gray-600 mb-4">How to transition to a new career field with confidence and preparation.</p>
+                    <a href="#" class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center">
+                        Read More <i class="fas fa-chevron-right ml-1 text-sm"></i>
+                    </a>
+                </div>
+            </article>
+        </div>
+        
+        <!-- Newsletter -->
+        <div class="bg-white rounded-xl shadow-md p-8 mt-12 text-center">
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">Get Career Tips Directly</h2>
+            <p class="text-gray-600 mb-6 max-w-lg mx-auto">Subscribe to our newsletter for regular resume and career advice</p>
+            <div class="flex max-w-md mx-auto">
+                <input type="email" placeholder="Your email address" class="flex-1 px-4 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-r-lg">Subscribe</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl mr-3">
+                            RC
+                        </div>
+                        <span class="text-xl font-bold">Resu<span class="text-blue-400">Craftify</span></span>
+                    </div>
+                    <p class="text-gray-400">Simple tools to create professional resumes that get results.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Resume Templates</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Cover Letter Guide</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Interview Prep</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Company</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Connect</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 ResuCraftify. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
